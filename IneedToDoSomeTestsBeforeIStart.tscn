@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cprk2b1y5qc7w"]
+
+[ext_resource type="PackedScene" uid="uid://gf0drasbxpda" path="res://test_sphere.tscn" id="2_74pwh"]
+[ext_resource type="PackedScene" uid="uid://d08jphgj860tr" path="res://PlayerCharacter.tscn" id="2_g5ojl"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uc5t7"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jvn7a"]
+size = Vector3(100, 1, 100)
+
+[node name="level_alpha" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 5, 5, 5)
+
+[node name="ground" type="StaticBody3D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="groundPlane" type="MeshInstance3D" parent="ground"]
+mesh = SubResource("PlaneMesh_uc5t7")
+
+[node name="groundCollisionShape" type="CollisionShape3D" parent="ground"]
+shape = SubResource("BoxShape3D_jvn7a")
+
+[node name="testSphere" parent="." instance=ExtResource("2_74pwh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.4522, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.133803, -0.645618, 0.751848, 0.11312, 0.763661, 0.63563, -0.984531, -7.56051e-09, 0.175212, 40.1263, 25.0188, 0.0782471)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_g5ojl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10114, 5.84447, 0)
